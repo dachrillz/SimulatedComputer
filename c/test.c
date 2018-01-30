@@ -60,14 +60,14 @@ int main(void){
 
 
 void test_minus(void){
-    CU_ASSERT_EQUAL(minus(2,2),5);
-    CU_ASSERT_EQUAL(minus(2,3),5);
+    CU_ASSERT_EQUAL(minus(2,2),0);
+    CU_ASSERT_EQUAL(minus(2,3),-1);
 
 }
 
 
 void test_add(void){
-    CU_ASSERT_EQUAL(add(2,2),5);
+    CU_ASSERT_EQUAL(add(2,2),4);
     CU_ASSERT_EQUAL(add(2,3),5);
 
 }
