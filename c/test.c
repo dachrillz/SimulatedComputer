@@ -1,7 +1,9 @@
 #include <CUnit/CUnit.h>
 #include <CUnit/Basic.h>
+#include <CUnit/TestRun.h>
 #include "src/myfile.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void test_add(void);
 void test_minus(void);
@@ -42,8 +44,14 @@ int main(void){
    CU_basic_show_failures(CU_get_failure_list());
    printf("\n\n");
 
+   int numberOfFails = (int) CU_get_number_of_tests_failed();
+   if (numberOfFails != 0){
+      CU_cleanup_registry(); 
+      exit(EXIT_FAILURE);
+   }
+
    /* Clean up registry and return */
-   CU_cleanup_registry();
+   CU_cleanup_registry();   
    return CU_get_error();
 
 
