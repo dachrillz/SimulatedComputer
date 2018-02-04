@@ -15,5 +15,5 @@ before_install:
   - cd c
 
 script:
-  - gcc test.c src/myfile.c -lcunit
-  - ./a.out
+  - make testmake
+  - ./testoutput
