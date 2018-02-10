@@ -20,13 +20,13 @@ void test_Load_Before_Anything(void){
 void test_Load_One_Word_And_Address_then_Load(void){
 	reset_Memory();
 
-	in(0b1111111111111111);
+	in(45);
 	
 	address(32);
 
 	load();
 
-	CU_ASSERT_EQUAL(out(32),0b1111111111111111);	
+	CU_ASSERT_EQUAL(out(32),45);	
 
 }
 

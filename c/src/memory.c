@@ -22,25 +22,55 @@ Comment:	The behaviour of the Screen and the Keyboard is described in their resp
 
 #include "memory.h"
 
+static void load_initial_screen();
+
+static void load_keyboard();
+
+static short memory[24576];
+
+static int current_address = 0;
+static int loaded_value = 0;
+
 
 void reset_Memory(){
-	1+1;
+	/*
+	Wipe the memory.
+	*/
+	current_address = 0;
+	loaded_value = 0;
+	
 
+	for(int i = 0; i < 24576; i++){
+		memory[i] = 0;
+	}
+
+	load_initial_screen();
+	load_keyboard();
 }
 
 
-short out(){
-	return (short) 0;
+short out(short i){
+	return memory[i];
 }
 
 void in(short input){
-	1+1;
+	loaded_value = input;
 }
 
 void load(){
-	1+1;
+	memory[current_address] = loaded_value;
 }
 
 void address(short adr){
-	1+1;
+	current_address = adr;
+}
+
+static void load_initial_screen(){
+	for(int i = 16384; i < 24576; i++){ // The range of i is the range of the memory mapped screen
+		memory[i] = 0; //@TODO: This should be some standard nice screen.
+	} 
+}
+
+static void load_keyboard(){
+	memory[24576] = 0; //@TODO: map this to the keyboard later.
 }

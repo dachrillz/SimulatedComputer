@@ -7,7 +7,7 @@ void load(); //write enable bit
 void in(short); //What to write
 void address(short); //where to write (should be no longer than 15 bits...)
 
-short out();
+short out(short i);
 
 void reset_Memory();
 
