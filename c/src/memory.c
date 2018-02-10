@@ -31,6 +31,8 @@ static short memory[24576];
 static int current_address = 0;
 static int loaded_value = 0;
 
+int i; //for the for loops.
+
 
 void reset_Memory(){
 	/*
@@ -40,7 +42,7 @@ void reset_Memory(){
 	loaded_value = 0;
 	
 
-	for(int i = 0; i < 24576; i++){
+	for(i = 0; i < 24576; i++){
 		memory[i] = 0;
 	}
 
@@ -66,7 +68,7 @@ void address(short adr){
 }
 
 static void load_initial_screen(){
-	for(int i = 16384; i < 24576; i++){ // The range of i is the range of the memory mapped screen
+	for(i = 16384; i < 24576; i++){ // The range of i is the range of the memory mapped screen
 		memory[i] = 0; //@TODO: This should be some standard nice screen.
 	} 
 }
