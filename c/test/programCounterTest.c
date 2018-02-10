@@ -1,6 +1,6 @@
 #include <CUnit/CUnit.h>
 
-#include "../src/programCounter.h"
+#include "../src/headers/programCounter.h"
 #include "memoryTest.h"
 
 

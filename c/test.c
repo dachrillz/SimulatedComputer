@@ -7,14 +7,16 @@
 /*
 Files that are included from the project (src)
 */
-#include "src/memory.h"
-#include "src/programCounter.h"
+#include "src/headers/memory.h"
+#include "src/headers/programCounter.h"
+#include "src/headers/instructionMemory.h"
 
 /*
 Headers that are from the test folder
 */
 #include "test/memoryTest.h"
 #include "test/programCounterTest.h"
+#include "test/instructionMemoryTest.h"
 
 void test_add(void);
 void test_minus(void);
@@ -27,13 +29,14 @@ int main(void){
 
    CU_pSuite pSuite = NULL;
    CU_pSuite PC_Suite = NULL;
+   CU_pSuite instruction_memory_suite = NULL;
 
 
    /* initialize the CUnit test registry */
    if ( CUE_SUCCESS != CU_initialize_registry() )
       return CU_get_error();
 
-   /* add a suite to the registry */
+   /* add MEMORY SUITE*/
    pSuite = CU_add_suite( "Memory Suite", init_suite, clean_suite );
    if ( NULL == pSuite ) {
       CU_cleanup_registry();
@@ -52,7 +55,7 @@ int main(void){
       return CU_get_error();
    }
 
-   /* add a suite to the registry */
+   /* add PC SUITE*/
    PC_Suite = CU_add_suite( "Suite for 'Program Counter'", init_suite, clean_suite );
    if ( NULL == pSuite ) {
       CU_cleanup_registry();
@@ -61,11 +64,31 @@ int main(void){
    }
    
 
-
    /* add the tests to the suite */
    if ( (NULL == CU_add_test(PC_Suite, "test_reset", test_reset))||
         (NULL == CU_add_test(PC_Suite, "test_set_then_get", test_set_then_get))||
+        (NULL == CU_add_test(PC_Suite, "test_set_get_get", test_set_get_get))||
         (NULL == CU_add_test(PC_Suite, "test_increment_program_counter", test_increment_program_counter))
+      )
+   {
+      CU_cleanup_registry();
+      return CU_get_error();
+   }
+   
+  /* add a suite to the registry */
+   instruction_memory_suite = CU_add_suite( "Suite for Instruction Memory", init_suite, clean_suite );
+   if ( NULL == pSuite ) {
+      CU_cleanup_registry();
+      return CU_get_error();
+      
+   }
+   
+
+   /* add the tests to the suite */
+   if ( (NULL == CU_add_test(instruction_memory_suite, "test_get_zero", test_get_zero))||
+        (NULL == CU_add_test(instruction_memory_suite, "test_set_then_get", test_set_then_get))||
+        (NULL == CU_add_test(instruction_memory_suite, "test_set_get_get", test_set_get_get))||
+        (NULL == CU_add_test(instruction_memory_suite, "test_increment_program_counter", test_increment_program_counter))
       )
    {
       CU_cleanup_registry();
