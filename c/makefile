@@ -3,7 +3,7 @@ hellomake: hellomake.c hellofunc.c
 
 
 testmake: 
-	gcc -o testoutput test.c test/memoryTest.c src/memory.c -lcunit
+	gcc -o testoutput test.c test/*.c src/*.c -lcunit
 
 
 clean: 
