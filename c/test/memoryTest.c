@@ -4,8 +4,7 @@
 #include "memoryTest.h"
 
 
-//    CU_ASSERT_EQUAL(minus(2,2),0);
-//    CU_ASSERT_EQUAL(minus(2,3),-1);
+int i; // For for loopts
 
 
 void test_Load_Before_Anything(void){
@@ -52,7 +51,7 @@ void test_reset_Memory(void){
 	reset_Memory();
 
 
-	for(short i=0; i<24576; i++){ //Not sure if this is correct length lol.... (@TODO: change when keyboard is added!)
+	for(i=0; i<24576; i++){ //Not sure if this is correct length lol.... (@TODO: change when keyboard is added!)
 		CU_ASSERT_EQUAL(out(i),0);
 	}
 
