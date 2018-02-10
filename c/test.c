@@ -7,13 +7,14 @@
 /*
 Files that are included from the project (src)
 */
-#include "src/myfile.h"
 #include "src/memory.h"
+#include "src/programCounter.h"
 
 /*
 Headers that are from the test folder
 */
 #include "test/memoryTest.h"
+#include "test/programCounterTest.h"
 
 void test_add(void);
 void test_minus(void);
@@ -25,6 +26,7 @@ int clean_suite(void) { return 0; }
 int main(void){
 
    CU_pSuite pSuite = NULL;
+   CU_pSuite PC_Suite = NULL;
 
 
    /* initialize the CUnit test registry */
@@ -32,7 +34,7 @@ int main(void){
       return CU_get_error();
 
    /* add a suite to the registry */
-   pSuite = CU_add_suite( "Change this later lol", init_suite, clean_suite );
+   pSuite = CU_add_suite( "Memory Suite", init_suite, clean_suite );
    if ( NULL == pSuite ) {
       CU_cleanup_registry();
       return CU_get_error();
@@ -49,6 +51,28 @@ int main(void){
       CU_cleanup_registry();
       return CU_get_error();
    }
+
+   /* add a suite to the registry */
+   PC_Suite = CU_add_suite( "Suite for 'Program Counter'", init_suite, clean_suite );
+   if ( NULL == pSuite ) {
+      CU_cleanup_registry();
+      return CU_get_error();
+      
+   }
+   
+
+
+   /* add the tests to the suite */
+   if ( (NULL == CU_add_test(PC_Suite, "test_reset", test_reset))||
+        (NULL == CU_add_test(PC_Suite, "test_set_then_get", test_set_then_get))||
+        (NULL == CU_add_test(PC_Suite, "test_increment_program_counter", test_increment_program_counter))
+      )
+   {
+      CU_cleanup_registry();
+      return CU_get_error();
+   }
+
+   
 
 
    // Run all tests using the basic interface
