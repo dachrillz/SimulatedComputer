@@ -1,5 +1,4 @@
-/*
-
+/* 
 This is the instruction memory for the simulated computer.
 
 Normally the machine instructions are stored in the normal memory along with data and programs. However for simplicity the programs will be stored in a separate memory in order to
@@ -8,7 +7,7 @@ make the code for the simulated computer easier to debug.
 More formally the instruction memory is described by:
 
 Chip Name: 	ROM32K
-		    address[15  //Address of the instruction that is requested.
+		address[15] //Address of the instruction that is requested.
 Output:		out[16] 	//The request instruction consisting of 16 bits.
 
 Comment: This memory is preloaded with the instruction set for the simulated computer. Should one which to extend or change the instructions for the computer, a proper instruction needs to be added to this file.
@@ -60,14 +59,30 @@ D|M      |      1111 0101 01dd djjj     |
 
 
 #include "../headers/memory.h"
+#include "../headers.constants.h"
 
 static unsigned short instruction_PC;
 
 static unsigned short instruction_memory[29] = {
-                                                0b0110000000000000, //@A
-                                                0b1110101010000000  //0
-                                                
-
+                                               	A_INSTRUCTION, 
+						0_INSTRUCTION,
+						1_INSTRUCTION,
+						-1_INSTRUCTION,
+						D_INSTRUCTION,
+						A_INSTRUCTION,
+						!D_INSTRUCTION,
+						!A_INSTRUCTION,
+						-D_INSTRUCTION,
+						-A_INSTRUCTION,
+						D+1_INSTRUCTION,
+						A+1_INSTRUCTION,
+						D_1_INSTRUCTION,
+						A-1_INSTRUCTION,
+						D+A_INSTRUCTION,
+						D-A_INSTRUCTION,
+						A-D_INSTRUCTION,
+						D&A_INSTRUCTION,
+						D|A_INSTRUCTION
 };
 
 void set_instruction_pc(unsigned short i){
