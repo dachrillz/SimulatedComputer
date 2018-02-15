@@ -2,9 +2,9 @@
 
 #include "../src/headers/instructionMemory.h"
 #include "instructionMemoryTest.h"
+#include "../src/headers/constants.h"
 
 /*
-Here comes some fucky things...
 0              1110101010000000     
 1              1110111111000000     
 -1             1110111010000000     
@@ -33,61 +33,89 @@ void test_A_instruction();
 
 void test_get_zero(){
     set_instruction_pc(1);
-    CU_ASSERT_EQUAL(get_instruction(),0b1110101010000000);	
+    CU_ASSERT_EQUAL(get_instruction(),0_INSTRUCTION);	
 }
 
 void test_get_one(){
     set_instruction_pc(2);
-    CU_ASSERT_EQUAL(get_instruction(),0b1110111111000000);
+    CU_ASSERT_EQUAL(get_instruction(),1_INSTRUCTION);
 }
 
 void test_get_neg_one(){
     set_instruction_pc(3);
-   CU_ASSERT_EQUAL(get_instruction(), 0b1110111010000000); 
+   CU_ASSERT_EQUAL(get_instruction(), -1_INSTRUCTION); 
 }
 
 
 void test_get_D(){
     set_instruction_pc(4);
-    CU_ASSERT_EQUAL(get_instruction(),)
+    CU_ASSERT_EQUAL(get_instruction(),D_INSTRUCTION);
 }
 
 
 void test_get_A(){
     set_instruction_pc(5);
-    CU_ASSERT_EQUAL(get_instruction(),)
+    CU_ASSERT_EQUAL(get_instruction(),A_INSTRUCTION);
 }
 
 
 void test_get_not_D(){
     set_instruction_pc(6);
-    CU_ASSERT_EQUAL(get_instruction(),)
+    CU_ASSERT_EQUAL(get_instruction(),!D_INSTRUCTION);
 }
 
 
 void test_get_not_A(){
     set_instruction_pc(7);
-    CU_ASSERT_EQUAL(get_instruction(),)
+    CU_ASSERT_EQUAL(get_instruction(),!A_INSTRUCTION);
+}
+
+void test_get_neg_D(){
+    set_instruction_pc(8);
+    CU_ASSERT_EQUAL(get_instruction(),-D_INSTRUCTION);
+}
+
+void test_get_neg_A(){
+    set_instruction_pc(9);
+    CU_ASSERT_EQUAL(get_instruction(),-A_INSTRUCTION);
+}
+
+void test_get_D_plus(){
+    set_instruction_pc(10);
+    CU_ASSERT_EQUAL(get_instruction(),D+1_INSTRUCTION);
+}
+
+void test_get_A_plus(){
+    set_instruction_pc(11);
+    CU_ASSERT_EQUAL(get_instruction(),A+1_INSTRUCTION);
+}
+
+void test_get_D_minus(){
+    set_instruction_pc(12);
+    CU_ASSERT_EQUAL(get_instruction(),D-1_INSTRUCTION);
+}
+        
+
+void test_get_A_minus(){
+    set_instruction_pc(13);
+    CU_ASSERT_EQUAL(get_instruction(),A-1_INSTRUCTION);
+}
+
+void test_get_A_D_plus(){
+    set_instruction_pc(14);
+    CU_ASSERT_EQUAL(get_instruction(),D+A__INSTRUCTION);
 }
 
 
-void test_get_neg_D();
+void test_get_D_A_Minus(){
+    set_instruction_pc(15);
+    CU_ASSERT_EQUAL(get_instruction(),D-A__INSTRUCTION);
+} //D-A
 
-void test_get_neg_A();
-
-void test_get_D_plus();
-
-void test_get_A_plus();
-
-void test_get_D_minus();
-
-void test_get_A_minus();
-
-void test_get_A_D_plus();
-
-void test_get_D_A_Minus(); //D-A
-
-void test_get_A_D_Minus(); //A-D
+void test_get_A_D_Minus(){
+    set_instruction_pc(16);
+    CU_ASSERT_EQUAL(get_instruction(),A-D_INSTRUCTION);
+} //A-D
 
 void test_get_D_and_A();
 
