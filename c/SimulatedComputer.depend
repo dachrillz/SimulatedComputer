@@ -1,0 +1,75 @@
+# depslib dependency file v1.0
+1518775480 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1518779779 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/test.c
+	<CUnit/CUnit.h>
+	<CUnit/Basic.h>
+	<CUnit/TestRun.h>
+	<stdio.h>
+	<stdlib.h>
+	"src/headers/memory.h"
+	"src/headers/programCounter.h"
+	"src/headers/instructionMemory.h"
+	"test/memoryTest.h"
+	"test/programCounterTest.h"
+	"test/instructionMemoryTest.h"
+
+1518278270 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/headers/memory.h
+
+1518287056 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/headers/programCounter.h
+
+1518301884 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/headers/instructionMemory.h
+
+1517782493 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/test/memoryTest.h
+
+1518286991 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/test/programCounterTest.h
+
+1518800471 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/test/instructionMemoryTest.h
+
+1518777637 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/memory/instructionMemory.c
+	"../headers/memory.h"
+	"../headers/constants.h"
+
+1518777503 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/headers/constants.h
+
+1518291311 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/memory/memory.c
+	"../headers/memory.h"
+
+1518291505 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/programCounter.c
+	"headers/programCounter.h"
+
+1518777554 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/test/instructionMemoryTest.c
+	<CUnit/CUnit.h>
+	"../src/headers/instructionMemory.h"
+	"instructionMemoryTest.h"
+	"../src/headers/constants.h"
+
+1518291461 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/test/memoryTest.c
+	<CUnit/CUnit.h>
+	"../src/headers/memory.h"
+	"memoryTest.h"
+
+1518291477 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/test/programCounterTest.c
+	<CUnit/CUnit.h>
+	"../src/headers/programCounter.h"
+	"memoryTest.h"
+
+1518801831 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/test/aRegisterTest.c
+	<CUnit/CUnit.h>
+	"aRegisterTest.h"
+	"../src/headers/aRegister.h"
+
+1518802309 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/test/aRegisterTest.h
+
+1518800301 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/headers/aRegister.h
+
+1518801511 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/registers/aRegister.c
+	"../headers/aRegister.h"
+
+1518802926 source:/home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/registers/cRegister.c
+	"../headers/cRegister.h"
+
+1518802862 /home/chrille/Desktop/C/HelloWorld/SimulatedComputer/src/headers/cRegister.h
+

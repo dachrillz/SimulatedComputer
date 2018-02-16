@@ -1,4 +1,4 @@
-/* 
+/*
 This is the instruction memory for the simulated computer.
 
 Normally the machine instructions are stored in the normal memory along with data and programs. However for simplicity the programs will be stored in a separate memory in order to
@@ -12,7 +12,7 @@ Output:		out[16] 	//The request instruction consisting of 16 bits.
 
 Comment: This memory is preloaded with the instruction set for the simulated computer. Should one which to extend or change the instructions for the computer, a proper instruction needs to be added to this file.
 
-Instruction Table: 
+Instruction Table:
 Legend: d stands for destination (address), j stands for jump (PC) They can be zero in the language. A is the A-registry, D is the D-registry. M is the main memory.
 
 mnemonic |      xxxx xxxx xxxx xxxx     |
@@ -21,7 +21,7 @@ A-instr  |      011x xxxx xxxx xxxx     |
 ---------|------------------------------|
 C-instrs |                              |
 ---------|------------------------------|
-a = 0    |                              |         
+a = 0    |                              |
 ---------|------------------------------|
 0        |      1110 1010 10dd djjj     |
 1        |      1110 1111 11dd djjj     |
@@ -42,7 +42,7 @@ A-D      |      1110 0001 11dd djjj     |
 D&A      |      1110 0000 00dd djjj     |
 D|A      |      1110 0101 01dd djjj     |
 ---------|------------------------------|
-a = 1    |                              |         
+a = 1    |                              |
 ---------|------------------------------|
 M        |      1111 1100 00dd djjj     |
 !M       |      1111 1100 01dd djjj     |
@@ -59,30 +59,40 @@ D|M      |      1111 0101 01dd djjj     |
 
 
 #include "../headers/memory.h"
-#include "../headers.constants.h"
+#include "../headers/constants.h"
 
 static unsigned short instruction_PC;
 
 static unsigned short instruction_memory[29] = {
-                                               	A_INSTRUCTION, 
-						0_INSTRUCTION,
-						1_INSTRUCTION,
-						-1_INSTRUCTION,
-						D_INSTRUCTION,
-						A_INSTRUCTION,
-						!D_INSTRUCTION,
-						!A_INSTRUCTION,
-						-D_INSTRUCTION,
-						-A_INSTRUCTION,
-						D+1_INSTRUCTION,
-						A+1_INSTRUCTION,
-						D_1_INSTRUCTION,
-						A-1_INSTRUCTION,
-						D+A_INSTRUCTION,
-						D-A_INSTRUCTION,
-						A-D_INSTRUCTION,
-						D&A_INSTRUCTION,
-						D|A_INSTRUCTION
+SET_A_INSTRUCTION,
+ZERO_INSTRUCTION,
+ONE_INSTRUCTION,
+NEG_ONE_INSTRUCTION,
+D_INSTRUCTION,
+GET_A_INSTRUCTION,
+NOT_D_INSTRUCTION,
+NOT_A_INSTRUCTION,
+SUB_D_INSTRUCTION,
+SUB_A_INSTRUCTION,
+D_PLUS_INSTRUCTION,
+A_PLUS_INSTRUCTION,
+D_SUB_INSTRUCTION,
+A_SUB_INSTRUCTION,
+D_PLUS_A_INSTRUCTION,
+D_SUB_A_INSTRUCTION,
+A_SUB_D_INSTRUCTION,
+D_AND_A_INSTRUCTION,
+D_OR_A_INSTRUCTION,
+M_INSTRUCTION,
+NOT_M_INSTRUCTION,
+SUB_M_INSTRUCTION,
+M_PLUS_INSTRUCTION,
+M_SUB_INSTRUCTION,
+D_PLUS_M_INSTRUCTION,
+D_SUB_M_INSTRUCTION,
+M_SUB_D_INSTRUCTION,
+D_AND_M_INSTRUCTION,
+D_OR_M_INSTRUCTION
 };
 
 void set_instruction_pc(unsigned short i){
@@ -92,10 +102,10 @@ void set_instruction_pc(unsigned short i){
 unsigned short get_instruction(){
     return instruction_memory[instruction_PC];
     }
-    
-    
-    
-    
+
+
+
+
 
 
 

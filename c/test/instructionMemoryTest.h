@@ -1,7 +1,6 @@
 #ifndef INSTRUCTIONMEMORYTEST_H_
 #define INSTRUCTIONMEMORYTEST_H_
 
-
 //A instruction
 
 void test_A_instruction();

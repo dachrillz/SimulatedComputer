@@ -1,5 +1,5 @@
 testmake: 
-	gcc -o testoutput test.c test/*.c src/*.c src/memory/*.c -lcunit
+	gcc -o testoutput  src/*.c test/*.c *.c src/memory/*.c src/registers/*.c -lcunit
 
 
 clean: 
