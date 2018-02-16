@@ -12,6 +12,7 @@ Files that are included from the project (src)
 #include "src/headers/instructionMemory.h"
 #include "src/headers/aRegister.h"
 #include "src/headers/cRegister.h"
+#include "src/headers/alu.h"
 
 /*
 Headers that are from the test folder
@@ -21,6 +22,7 @@ Headers that are from the test folder
 #include "test/instructionMemoryTest.h"
 #include "test/aRegisterTest.h"
 #include "test/cRegisterTest.h"
+#include "test/aluTest.h"
 
 void test_add(void);
 void test_minus(void);
@@ -35,6 +37,7 @@ int main(void){
    CU_pSuite PC_Suite = NULL;
    CU_pSuite instruction_memory_suite = NULL;
    CU_pSuite Register_Suite = NULL;
+   CU_pSuite ALU_Suite = NULL;
 
 
    /* initialize the CUnit test registry */
@@ -138,6 +141,40 @@ int main(void){
    /* add Register tests */
    if ( (NULL == CU_add_test(Register_Suite, "test_set_and_get_A_register", test_set_and_get_A_register))||
         (NULL == CU_add_test(Register_Suite, "test_set_and_get_C_register", test_set_and_get_C_register))
+      )
+   {
+      CU_cleanup_registry();
+      return CU_get_error();
+   }
+   
+   /* add ALU SUITE*/
+   ALU_Suite = CU_add_suite( "Register Suite", init_suite, clean_suite );
+   if ( NULL == pSuite ) {
+      CU_cleanup_registry();
+      return CU_get_error();
+
+   }
+
+
+   /* add Register tests */
+   if ( (NULL == CU_add_test(Register_Suite, "alu_zero_test", alu_zero_test))||
+        (NULL == CU_add_test(Register_Suite, "alu_one_test", alu_one_test))||
+        (NULL == CU_add_test(Register_Suite, "alu_minus_one_test", alu_minus_one_test))||
+        (NULL == CU_add_test(Register_Suite, "alu_x", alu_x))||
+        (NULL == CU_add_test(Register_Suite, "alu_y", alu_y))||
+        (NULL == CU_add_test(Register_Suite, "alu_not_x", alu_not_x))||
+        (NULL == CU_add_test(Register_Suite, "alu_not_y", alu_not_y))||
+        (NULL == CU_add_test(Register_Suite, "alu_sub_x", alu_sub_x))||
+        (NULL == CU_add_test(Register_Suite, "alu_sub_y", alu_sub_y))||
+        (NULL == CU_add_test(Register_Suite, "alu_x_plus", alu_x_plus))||
+        (NULL == CU_add_test(Register_Suite, "alu_y_plus", alu_y_plus))||
+        (NULL == CU_add_test(Register_Suite, "alu_x_minus", alu_x_minus))||
+        (NULL == CU_add_test(Register_Suite, "alu_y_minus", alu_y_minus))||
+        (NULL == CU_add_test(Register_Suite, "alu_x_plus_y", alu_x_plus_y))||
+        (NULL == CU_add_test(Register_Suite, "alu_x_sub_y", alu_x_sub_y))||
+        (NULL == CU_add_test(Register_Suite, "alu_y_sub_x", alu_y_sub_x))||
+        (NULL == CU_add_test(Register_Suite, "alu_x_and_y", alu_x_and_y))||
+        (NULL == CU_add_test(Register_Suite, "alu_x_or_y", alu_x_or_y))
       )
    {
       CU_cleanup_registry();

@@ -54,3 +54,7 @@ dkms.conf
 .idea/
 node_modules/
 dist/
+
+SimulatedComputer.cbp
+SimulatedComputer.depend
+SimulatedComputer.layout
