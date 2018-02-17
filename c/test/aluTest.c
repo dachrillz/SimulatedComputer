@@ -23,13 +23,6 @@ void alu_y(){
 }
 
 void alu_not_x(){
-
-    printf("\n");
-    printf("%d", 21);
-    printf("%d", ~21);
-    printf("%d", 0b1111111111101010);
-    printf("\n");
-
     CU_ASSERT_EQUAL(alu(0b001101,21,20),-0b10110);
 }
 
