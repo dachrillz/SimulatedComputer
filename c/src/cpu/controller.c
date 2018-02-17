@@ -155,7 +155,7 @@ short handle_alu(unsigned short instruction){
     However for clarity this was kept as is.
     */
     
-    if(temp&0b10000000 != 1){ //check if small a is 0
+    if((temp&0b10000000) != 1){ //check if small a is 0
         temp = temp<<1;
         
         switch(instruction&mask_alu){
