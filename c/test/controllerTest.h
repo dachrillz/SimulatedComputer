@@ -3,11 +3,8 @@
 
 //general tests
 
-void controller_fetch_test();
-
-void controller_fetch_execute_fectch();
-
-void controller_fetch_execute();
+void test_simple_execute_program_counter();
+void test_simple_execute_a_register_value();
 
 
 //d-tests

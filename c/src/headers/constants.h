@@ -1,7 +1,7 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 //#A-instruction
-#define   SET_A_INSTRUCTION           	0b0110000000000000
+#define   SET_A_INSTRUCTION           	0b0000000000000000
 //a = 0
 #define     ZERO_INSTRUCTION            0b1110101010000000
 #define     ONE_INSTRUCTION             0b1110111111000000

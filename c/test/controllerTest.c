@@ -20,32 +20,39 @@ void execute_instruction();
 
 //general tests
 
-void controller_fetch_test(){
-    set_program_counter(0);
-    CU_ASSERT_EQUAL(get_instruction(),SET_A_INSTRUCTION);
-}
+void test_simple_execute_program_counter(){
 
-void controller_fetch_execute_fetch(){
     set_program_counter(0);
-    //execute(); //should fetch + execute
-    
-    CU_ASSERT_EQUAL(get_instruction(),ZERO_INSTRUCTION);
-    
-}
-
-void controller_fetch_execute(){
-    set_program_counter(30);
     set_D_register(0);
-    set_A_register(0);
-    write_in_instruction_memory(get_program_counter(), D_PLUS_INSTRUCTION|MEMORY_M);
-    
-    CU_ASSERT_EQUAL(read_from_memory(0),1);
-    
-} 
+    set_A_register(0b1111);
+
+    execute();
+    CU_ASSERT_EQUAL(get_program_counter(),1);
+
+}
+
+void test_simple_execute_a_register_value(){
+
+    set_program_counter(0);
+    set_D_register(0);
+    set_A_register(0b1111);
+
+    execute();
+    CU_ASSERT_EQUAL(get_A_register(),0);
+
+}
 
 //d-tests
 
-void test_memory_null();
+void test_memory_null(){
+    set_program_counter(30);
+    set_D_register(0);
+    set_A_register(0);
+    write_in_instruction_memory(get_program_counter(), D_PLUS_INSTRUCTION|MEMORY_NULL);
+    CU_ASSERT_EQUAL(read_from_memory(0),0);
+    CU_ASSERT_EQUAL(get_A_register(),0);
+    CU_ASSERT_EQUAL(get_A_register(),0);
+}
 
 void test_M();
 

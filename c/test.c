@@ -13,6 +13,7 @@ Files that are included from the project (src)
 #include "src/headers/aRegister.h"
 #include "src/headers/dRegister.h"
 #include "src/headers/alu.h"
+#include "src/headers/controller.h"
 
 /*
 Headers that are from the test folder
@@ -23,6 +24,7 @@ Headers that are from the test folder
 #include "test/aRegisterTest.h"
 #include "test/dRegisterTest.h"
 #include "test/aluTest.h"
+#include "test/controllerTest.h"
 
 void test_add(void);
 void test_minus(void);
@@ -38,6 +40,7 @@ int main(void){
    CU_pSuite instruction_memory_suite = NULL;
    CU_pSuite Register_Suite = NULL;
    CU_pSuite ALU_Suite = NULL;
+   CU_pSuite Instruction_Suite = NULL;
 
 
    /* initialize the CUnit test registry */
@@ -172,6 +175,24 @@ int main(void){
         (NULL == CU_add_test(ALU_Suite, "alu_y_sub_x", alu_y_sub_x))||
         (NULL == CU_add_test(ALU_Suite, "alu_x_and_y", alu_x_and_y))||
         (NULL == CU_add_test(ALU_Suite, "alu_x_or_y", alu_x_or_y))
+      )
+   {
+      CU_cleanup_registry();
+      return CU_get_error();
+   }
+   
+    /* add instruction SUITE*/
+   Instruction_Suite = CU_add_suite( "Instruction_Suite", init_suite, clean_suite );
+   if ( NULL == pSuite ) {
+      CU_cleanup_registry();
+      return CU_get_error();
+
+   }
+
+
+   /* add INSTRUCTION tests */
+   if ( (NULL == CU_add_test(Instruction_Suite, "test_simple_execute_program_counter", test_simple_execute_program_counter))||
+        (NULL == CU_add_test(Instruction_Suite, "test_simple_execute_a_register_value", test_simple_execute_a_register_value))
       )
    {
       CU_cleanup_registry();
