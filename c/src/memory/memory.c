@@ -34,7 +34,7 @@ static int loaded_value = 0;
 int i; //for the for loops.
 
 
-void reset_Memory(){
+void reset_memory(){
 	/*
 	Wipe the memory.
 	*/
@@ -51,20 +51,12 @@ void reset_Memory(){
 }
 
 
-short out(short i){
+short read_from_memory(short i){
 	return memory[i];
 }
 
-void in(short input){
-	loaded_value = input;
-}
-
-void load(){
-	memory[current_address] = loaded_value;
-}
-
-void address(short adr){
-	current_address = adr;
+void write_to_memory(short address, short input){
+	memory[address] = input;
 }
 
 static void load_initial_screen(){

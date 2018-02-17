@@ -1,15 +1,11 @@
 #ifndef MEMORY_H_
 #define MEMORY_H_
 
-//@TODO: check if these commands can be simplified into 2 commands: load, save
+void write_to_memory(short address, short input);
 
-void load(); //write enable bit
-void in(short); //What to write
-void address(short); //where to write (should be no longer than 15 bits...)
+short read_from_memory(short i);
 
-short out(short i);
-
-void reset_Memory();
+void reset_memory();
 
 
 #endif

@@ -60,10 +60,11 @@ D|M      |      1111 0101 01dd djjj     |
 
 #include "../headers/memory.h"
 #include "../headers/constants.h"
+#include "../headers/programCounter.h"
 
 static unsigned short instruction_PC;
 
-static unsigned short instruction_memory[29] = {
+static unsigned short instruction_memory[30] = {
 SET_A_INSTRUCTION,
 ZERO_INSTRUCTION,
 ONE_INSTRUCTION,
@@ -92,7 +93,8 @@ D_PLUS_M_INSTRUCTION,
 D_SUB_M_INSTRUCTION,
 M_SUB_D_INSTRUCTION,
 D_AND_M_INSTRUCTION,
-D_OR_M_INSTRUCTION
+D_OR_M_INSTRUCTION,
+0 //used to test the controller...
 };
 
 void set_instruction_pc(unsigned short i){
@@ -100,8 +102,15 @@ void set_instruction_pc(unsigned short i){
 }
 
 unsigned short get_instruction(){
-    return instruction_memory[instruction_PC];
+    return instruction_memory[get_program_counter()];
     }
+    
+    
+unsigned short write_in_instruction_memory(int index, unsigned short inst){
+    //only to load instructions from textfile into the memory
+    instruction_memory[index] = inst;
+    
+}
 
 
 

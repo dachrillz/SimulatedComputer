@@ -11,7 +11,7 @@ Files that are included from the project (src)
 #include "src/headers/programCounter.h"
 #include "src/headers/instructionMemory.h"
 #include "src/headers/aRegister.h"
-#include "src/headers/cRegister.h"
+#include "src/headers/dRegister.h"
 #include "src/headers/alu.h"
 
 /*
@@ -21,7 +21,7 @@ Headers that are from the test folder
 #include "test/programCounterTest.h"
 #include "test/instructionMemoryTest.h"
 #include "test/aRegisterTest.h"
-#include "test/cRegisterTest.h"
+#include "test/dRegisterTest.h"
 #include "test/aluTest.h"
 
 void test_add(void);
@@ -53,10 +53,7 @@ int main(void){
 
    /* add the tests to the suite */
    if ( (NULL == CU_add_test(pSuite, "test_Load_Before_Anything", test_Load_Before_Anything))||
-        (NULL == CU_add_test(pSuite, "test_Load_One_Word_And_Address_then_Load", test_Load_One_Word_And_Address_then_Load))||
-        (NULL == CU_add_test(pSuite, "test_Load_One_Word_And_Adress_Change_Word_Then_Load", test_Load_One_Word_And_Adress_Change_Word_Then_Load))||
-        //(NULL == CU_add_test(pSuite, "test_reset_Memory", test_reset_Memory)) ||
-	(NULL == CU_add_test(pSuite, "test_So_That_Nothing_Is_Written_Withoud_Load", test_So_That_Nothing_Is_Written_Withoud_Load))
+        (NULL == CU_add_test(pSuite, "test_Load_One_Word_And_Address_then_Load", test_Load_One_Word_And_Address_then_Load))
       )
    {
       CU_cleanup_registry();
@@ -140,7 +137,7 @@ int main(void){
 
    /* add Register tests */
    if ( (NULL == CU_add_test(Register_Suite, "test_set_and_get_A_register", test_set_and_get_A_register))||
-        (NULL == CU_add_test(Register_Suite, "test_set_and_get_C_register", test_set_and_get_C_register))
+        (NULL == CU_add_test(Register_Suite, "test_set_and_get_D_register", test_set_and_get_D_register))
       )
    {
       CU_cleanup_registry();
