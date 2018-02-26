@@ -11,7 +11,7 @@ void test_simple_execute_a_register_value();
 
 void test_memory_null();
 
-void test_M();
+void test_M_with_D_plus_instruction();
 
 void test_D();
 

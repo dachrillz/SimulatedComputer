@@ -1,77 +1,78 @@
 #include "../headers/alu.h"
+#include "../headers/constants.h"
 
 short alu(unsigned short instruction, short x, short y){
 
     switch(instruction) {
-        case 0b101010: //0
+        case ZERO_INSTRUCTION: //0
             return 0;
             break;
         
-        case 0b111111: //1
+        case ONE_INSTRUCTION: //1
             return 1;
             break;
         
-        case 0b111010: //-1
+        case NEG_ONE_INSTRUCTION: //-1
             return -1;
             break;
         
-        case 0b001100: //x
+        case D_INSTRUCTION: //x
             return x;
             break;
         
-        case 0b110000: //y
+        case GET_A_INSTRUCTION: //y
             return y;
             break;
         
-        case 0b001101: //!x
+        case NOT_D_INSTRUCTION: //!x
             return ~x;
             break;
         
-        case 0b110001: //!y
+        case NOT_A_INSTRUCTION: //!y
             return ~y;
             break;
         
-        case 0b001111: //-x
+        case SUB_D_INSTRUCTION: //-x
             return -x;
             break;
         
-        case 0b110011: //-y
+        case SUB_A_INSTRUCTION: //-y
             return -y;
             break;
         
-        case 0b011111: //x+1
+        case D_PLUS_INSTRUCTION: //x+1
             return x+1;
             break;
         
-        case 0b110111: //y+1
+        case A_PLUS_INSTRUCTION: //y+1
             return y+1;
             break;
         
-        case 0b001110: //x-1
+        case D_SUB_INSTRUCTION: //x-1
             return x-1;
             break;
         
-        case 0b110010: //y-1
+        case A_SUB_INSTRUCTION: //y-1
             return y-1;
             break;
         
-        case 0b000010: //x+y
+        case D_PLUS_A_INSTRUCTION: //x+y
             return x+y;
             break;
         
-        case 0b010011: //x-y
+        case D_SUB_A_INSTRUCTION: //x-y
             return x-y;
             break;
         
-        case 0b000111: //y-x
+        case A_SUB_D_INSTRUCTION: //y-x
             return y-x;
             break;
         
-        case 0b000000: //x&y
+        case D_AND_A_INSTRUCTION: //x&y
             return x&y;
             break;
         
-        case 0b010101: //x|y
+        case D_OR_A_INSTRUCTION: //x|y
             return x|y;
             break;
 

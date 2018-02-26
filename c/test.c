@@ -40,7 +40,7 @@ int main(void){
    CU_pSuite instruction_memory_suite = NULL;
    CU_pSuite Register_Suite = NULL;
    CU_pSuite ALU_Suite = NULL;
-   CU_pSuite Instruction_Suite = NULL;
+   CU_pSuite Controller_Suite = NULL;
 
 
    /* initialize the CUnit test registry */
@@ -182,17 +182,19 @@ int main(void){
    }
    
     /* add instruction SUITE*/
-   Instruction_Suite = CU_add_suite( "Instruction_Suite", init_suite, clean_suite );
+   Controller_Suite = CU_add_suite( "Controller_Suite", init_suite, clean_suite );
    if ( NULL == pSuite ) {
       CU_cleanup_registry();
       return CU_get_error();
 
    }
 
-
    /* add INSTRUCTION tests */
-   if ( (NULL == CU_add_test(Instruction_Suite, "test_simple_execute_program_counter", test_simple_execute_program_counter))||
-        (NULL == CU_add_test(Instruction_Suite, "test_simple_execute_a_register_value", test_simple_execute_a_register_value))
+   if ( (NULL == CU_add_test(Controller_Suite, "test_simple_execute_program_counter", test_simple_execute_program_counter))||
+        (NULL == CU_add_test(Controller_Suite, "test_simple_execute_a_register_value", test_simple_execute_a_register_value))||
+        (NULL == CU_add_test(Controller_Suite, "test_memory_null", test_memory_null))||
+        (NULL == CU_add_test(Controller_Suite, "test_M_with_D_plus_instruction", test_M_with_D_plus_instruction))||
+        (NULL == CU_add_test(Controller_Suite, "test_D", test_D))
       )
    {
       CU_cleanup_registry();

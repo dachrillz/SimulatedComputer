@@ -7,11 +7,9 @@
 #include "../headers/instructionMemory.h"
 #include "../headers/memory.h"
 
-#include <stdio.h>
+#include <stdio.h> //TODO remove!
 
 
-#define mask_alu 1111111111000000
-#define mask_des 0000000000111000
 #define mask_jmp 0000000000000111
 #define mask_a   0111111111111111
 
@@ -22,7 +20,7 @@ This function could use some refactoring, however it works pretty straight forwa
 */
 void execute(){
 
-    short temp_instruction;
+    unsigned short temp_instruction;
     temp_instruction = get_instruction();
     
     if((temp_instruction&0b1000000000000000) == 0){ //check if it is an a-instruction...
@@ -32,10 +30,15 @@ void execute(){
     else{
         
         //Calcualte using alu
-        short result = handle_alu(temp_instruction);
+        short result = handle_alu(temp_instruction);  
+        
         
         //figure out where to store the result
-        switch(temp_instruction&mask_des){
+        unsigned short dest_temp = temp_instruction;
+        dest_temp = dest_temp << 10;
+        dest_temp = dest_temp >> 10; //remove all bits around the instruction to just get the destination instruction.
+        
+        switch(dest_temp){
             case MEMORY_NULL:
                 //Empty_instruction
                 break;
@@ -146,93 +149,104 @@ void execute(){
 }
 
 short handle_alu(unsigned short instruction){
-    unsigned short temp = instruction&mask_alu;
-    temp = temp<<3; //format the code so that the alu understands it.
-    temp = temp>>6;   
+    unsigned short temp = instruction; //used to figure out if small a is 0 or 1.
+    temp = temp<<3;
+    temp = temp>>15;  
+    
+    //format the code so that the alu understands it.
+    instruction = instruction >> 6;
+    instruction = instruction << 6;
 
     /*
     this could be heavily optimized if one differentiates between when a=0 and a=1, and makes a special case for non commutative operation (A-D,D-A)
     However for clarity this was kept as is.
     */
+    if(temp == 0){
     
-    if((temp&0b10000000) != 1){ //check if small a is 0
-        temp = temp<<1;
-        
-        switch(instruction&mask_alu){
+        switch(instruction){
         
             case ZERO_INSTRUCTION:
-                return alu(temp,0,0);
+                return alu(instruction,0,0);
                 break;
                 
             case ONE_INSTRUCTION:
-                return alu(temp,0,0);
+                return alu(instruction,0,0);
                 break;
                 
             case NEG_ONE_INSTRUCTION:
-                return alu(temp,0,0);
+                return alu(instruction,0,0);
                 break;
                 
             case D_INSTRUCTION:
-                return alu(temp,get_D_register(),0);
+                return alu(instruction,get_D_register(),0);
                 break;
                 
             case GET_A_INSTRUCTION:
-                return alu(temp,0,get_A_register());
+                return alu(instruction,0,get_A_register());
                 break;
                 
             case NOT_D_INSTRUCTION:
-                return alu(temp,get_D_register(),0);
+                return alu(instruction,get_D_register(),0);
                 break;
                 
             case NOT_A_INSTRUCTION:
-                return alu(temp,0,get_A_register());
+                return alu(instruction,0,get_A_register());
                 break;
                 
             case SUB_D_INSTRUCTION:
-                return alu(temp, get_D_register(),0);
+                return alu(instruction, get_D_register(),0);
                 break;
                 
             case SUB_A_INSTRUCTION:
-                return alu(temp,0,get_A_register());
+                return alu(instruction,0,get_A_register());
                 break;
                 
             case D_PLUS_INSTRUCTION:
-                return alu(temp,get_D_register(),0);
+                return alu(instruction,get_D_register(),0);
                 break;
                 
             case A_PLUS_INSTRUCTION:
-                return alu(temp,0,get_A_register());
+                return alu(instruction,0,get_A_register());
                 break;
                 
             case D_SUB_INSTRUCTION:
-                return alu(temp,get_D_register(),0);
+                return alu(instruction,get_D_register(),0);
                 break;
                 
             case A_SUB_INSTRUCTION:
-                return alu(temp,0,get_A_register());
+                return alu(instruction,0,get_A_register());
                 break;
                 
             case D_PLUS_A_INSTRUCTION:
-                return alu(temp,get_D_register(),get_A_register());
+                return alu(instruction,get_D_register(),get_A_register());
                 break;
                 
             case D_SUB_A_INSTRUCTION:
-                return alu(temp,get_D_register(),get_A_register());
+                return alu(instruction,get_D_register(),get_A_register());
                 break;
                 
             case A_SUB_D_INSTRUCTION:
-                return alu(temp,get_D_register(),get_A_register());
+                return alu(instruction,get_D_register(),get_A_register());
                 break;
                 
             case D_AND_A_INSTRUCTION:
-                return alu(temp,get_D_register(),get_A_register());
+                return alu(instruction,get_D_register(),get_A_register());
                 break;
                 
             case D_OR_A_INSTRUCTION:
-                return alu(temp,get_D_register(),get_A_register());
+                return alu(instruction,get_D_register(),get_A_register());
                 break;
         }
         
+    }
+    else{
+    
+        switch(instruction){
+            //Implementd the instruction where small a = 1 (That is most memory access functions) TODO
+        
+        
+        }
+    
     }
 }
 
